@@ -6,18 +6,23 @@ const faqs = [
   {
     question: "How does it increase my productivity?",
     answer:
-      "To schedule an appointment or event in a calendar, you can typically use the New Event or Create Event button to open a form where you can enter the details of the event such as the name,location,start and end time and invitees.",
+      "Our platform helps you to be more productive by prioritizing your tasks and saving time spent on managing your schedule. It does that by syncing your tasks with your calendar schedule, so you can focus on getting things done. Plus, you can explore new interests and hobbies during your free time.",
   },
   {
-    question: "How does it help me my tasks are scheduled?",
+    question: "How does my tasks gets scheduled?",
     answer:
-      "To invite others to an event or meeting in your calendar, you can typically use the Invite  or Add Guests button when creating or editing the event. This will open a form where you can enter the email addresses of the people you want to invite.",
+      'As you keep adding tasks/todos in our page giving us the desired time to complete it, our platform will automatically schedule it in your calendar free time. You can also manually schedule your tasks in your calender by using the "Push to Calender" button',
     question: "How do I view my calendar on different devices?",
   },
   {
     question: "How do I sync my calendar with other calendars?",
     answer:
       "To view your calendar on different devices, you can typically use the calendar app that is built into the device, or a third-party calendar app that is compatible with the device's operating system. For example, if you're using an iPhone, you can use the built-in Calendar app, or a third-party app like Google Calendar.",
+  },
+  {
+    question: "How does it help me after work hours as well?",
+    answer:
+      "It gives you the personalized opinion by asking you questions about your interests and hobbies. It also gives you the option to explore new interests and hobbies. You can also add your own interests and hobbies to the list.",
   },
 ];
 
