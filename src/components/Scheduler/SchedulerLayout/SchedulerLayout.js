@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import SchedulerNavbar from "../SchedulerNavbar";
+import SchedulerNavbar from "../SchedulerNavbar/SchedulerNavbar";
 import Calender from "../Calender/Calender";
 import Sidebar from "../Sidebar/Sidebar";
 import TasksContext from "../../../contexts/TasksContext";
