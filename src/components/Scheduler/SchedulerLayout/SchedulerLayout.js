@@ -13,8 +13,8 @@ import { async } from "@firebase/util";
 
 const SchedulerLayout = () => {
   // call setDummySchedules first to set dummy schedules then call getSchedules
-  const { getEvents } = useContext(TasksContext);
-  const { apiCalendar, handleGoogleCalenderSignUp } = useUserAuth();
+  // const { getEvents } = useContext(TasksContext);
+  const { handleGoogleCalenderSignUp, userData } = useUserAuth();
   let { component } = useParams();
   const [tab, setTab] = useState(1);
   const [tasks, setTasks] = useState([]);
@@ -26,8 +26,8 @@ const SchedulerLayout = () => {
   }, [component]);
 
   useEffect(() => {
-    console.log("called....");
-    handleGoogleCalenderSignUp("sign-in");
+    if (typeof window === undefined) handleGoogleCalenderSignUp("sign-in");
+    // console.log("called....");
   }, []);
 
   return (

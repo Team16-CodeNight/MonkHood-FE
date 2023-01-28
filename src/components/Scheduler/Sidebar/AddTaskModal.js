@@ -103,12 +103,7 @@ const AddTaskModal = ({ open, setOpen }) => {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog
-        as="div"
-        className="fixed z-10 inset-0 overflow-y-auto"
-        initialFocus={cancelButtonRef}
-        onClose={setOpen}
-      >
+      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -123,10 +118,7 @@ const AddTaskModal = ({ open, setOpen }) => {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span
-            className="hidden sm:inline-block sm:align-middle sm:h-screen"
-            aria-hidden="true"
-          >
+          <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
             &#8203;
           </span>
           <Transition.Child
@@ -141,19 +133,12 @@ const AddTaskModal = ({ open, setOpen }) => {
             <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div>
                 <div>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">
-                    Add New Task
-                  </h3>
-                  <p className="mt-1 text-sm text-gray-500">
-                    Don't worry, we will take care of it for you!
-                  </p>
+                  <h3 className="text-lg leading-6 font-medium text-gray-900">Add New Task</h3>
+                  <p className="mt-1 text-sm text-gray-500">Don't worry, we will take care of it for you!</p>
                 </div>
                 <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                   <div className="sm:col-span-3">
-                    <label
-                      htmlFor="title"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                       Title
                     </label>
                     <div className="mt-1">
@@ -161,20 +146,15 @@ const AddTaskModal = ({ open, setOpen }) => {
                         type="text"
                         name="title"
                         id="title"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="Add Sample Test Cases"
-                        onChange={(e) =>
-                          setTask({ ...task, title: e.target.value })
-                        }
+                        onChange={(e) => setTask({ ...task, title: e.target.value })}
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label
-                      htmlFor="desc"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                    <label htmlFor="desc" className="block text-sm font-medium text-gray-700">
                       Description
                     </label>
                     <div className="mt-1">
@@ -182,20 +162,15 @@ const AddTaskModal = ({ open, setOpen }) => {
                         id="desc"
                         name="desc"
                         rows={3}
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
+                        className="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                         defaultValue={""}
-                        onChange={(e) =>
-                          setTask({ ...task, description: e.target.value })
-                        }
+                        onChange={(e) => setTask({ ...task, description: e.target.value })}
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label
-                      htmlFor="category"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">
                       Category
                     </label>
                     <div className="mt-1">
@@ -204,19 +179,14 @@ const AddTaskModal = ({ open, setOpen }) => {
                         name="category"
                         id="category"
                         autoComplete="duration"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        onChange={(e) =>
-                          setTask({ ...task, category: e.target.value })
-                        }
+                        className="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => setTask({ ...task, category: e.target.value })}
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label
-                      htmlFor="duration"
-                      className="block text-sm font-medium text-gray-700"
-                    >
+                    <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
                       Duration (in mins)
                     </label>
                     <div className="mt-1">
@@ -225,10 +195,8 @@ const AddTaskModal = ({ open, setOpen }) => {
                         name="duration"
                         id="duration"
                         autoComplete="duration"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        onChange={(e) =>
-                          setTask({ ...task, duration: Number(e.target.value) })
-                        }
+                        className="shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => setTask({ ...task, duration: Number(e.target.value) })}
                       />
                     </div>
                   </div>
@@ -237,14 +205,14 @@ const AddTaskModal = ({ open, setOpen }) => {
               <div className="mt-5 sm:mt-6 sm:grid sm:grid-cols-2 sm:gap-3 sm:grid-flow-row-dense">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
+                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:col-start-2 sm:text-sm"
                   onClick={handleAddTask}
                 >
                   Add
                 </button>
                 <button
                   type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm"
+                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500 sm:mt-0 sm:col-start-1 sm:text-sm"
                   onClick={() => {
                     setOpen(false);
                     clear();
