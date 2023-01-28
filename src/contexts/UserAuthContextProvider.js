@@ -110,6 +110,7 @@ export function UserAuthContextProvider({ children }) {
                   keywords: [],
                   isDeleted: false,
                   location: "",
+                  tasks: [],
                 };
                 createUser(input).then(() => {
                   getAndSetUserData(profile.email);
