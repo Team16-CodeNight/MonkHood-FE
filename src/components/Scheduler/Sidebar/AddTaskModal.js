@@ -38,7 +38,7 @@ const AddTaskModal = ({ open, setOpen }) => {
       alert(error);
     }
   };
-
+  console.log(userData);
   // <div className="flex-shrink-0">
   //   <button
   //     type="button"
@@ -52,7 +52,12 @@ const AddTaskModal = ({ open, setOpen }) => {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="fixed z-10 inset-0 overflow-y-auto" initialFocus={cancelButtonRef} onClose={setOpen}>
+      <Dialog
+        as="div"
+        className="fixed z-10 inset-0 overflow-y-auto"
+        initialFocus={cancelButtonRef}
+        onClose={setOpen}
+      >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
             as={Fragment}
@@ -67,7 +72,10 @@ const AddTaskModal = ({ open, setOpen }) => {
           </Transition.Child>
 
           {/* This element is to trick the browser into centering the modal contents. */}
-          <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+          <span
+            className="hidden sm:inline-block sm:align-middle sm:h-screen"
+            aria-hidden="true"
+          >
             &#8203;
           </span>
           <Transition.Child
@@ -82,12 +90,19 @@ const AddTaskModal = ({ open, setOpen }) => {
             <div className="relative inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
               <div>
                 <div>
-                  <h3 className="text-lg leading-6 font-medium text-gray-900">Add New Task</h3>
-                  <p className="mt-1 text-sm text-gray-500">Don't worry, we will take care of it for you!</p>
+                  <h3 className="text-lg leading-6 font-medium text-gray-900">
+                    Add New Task
+                  </h3>
+                  <p className="mt-1 text-sm text-gray-500">
+                    Don't worry, we will take care of it for you!
+                  </p>
                 </div>
                 <div className="mt-6 grid grid-cols-1 gap-y-6 gap-x-4 sm:grid-cols-6">
                   <div className="sm:col-span-3">
-                    <label htmlFor="title" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="title"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Title
                     </label>
                     <div className="mt-1">
@@ -97,13 +112,18 @@ const AddTaskModal = ({ open, setOpen }) => {
                         id="title"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                         placeholder="Add Sample Test Cases"
-                        onChange={(e) => setTask({ ...task, title: e.target.value })}
+                        onChange={(e) =>
+                          setTask({ ...task, title: e.target.value })
+                        }
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label htmlFor="desc" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="desc"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Description
                     </label>
                     <div className="mt-1">
@@ -113,13 +133,18 @@ const AddTaskModal = ({ open, setOpen }) => {
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                         defaultValue={""}
-                        onChange={(e) => setTask({ ...task, description: e.target.value })}
+                        onChange={(e) =>
+                          setTask({ ...task, description: e.target.value })
+                        }
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="category"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Category
                     </label>
                     <div className="mt-1">
@@ -129,13 +154,18 @@ const AddTaskModal = ({ open, setOpen }) => {
                         id="category"
                         autoComplete="duration"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        onChange={(e) => setTask({ ...task, category: e.target.value })}
+                        onChange={(e) =>
+                          setTask({ ...task, category: e.target.value })
+                        }
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
+                    <label
+                      htmlFor="duration"
+                      className="block text-sm font-medium text-gray-700"
+                    >
                       Duration (in mins)
                     </label>
                     <div className="mt-1">
@@ -145,7 +175,9 @@ const AddTaskModal = ({ open, setOpen }) => {
                         id="duration"
                         autoComplete="duration"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        onChange={(e) => setTask({ ...task, duration: Number(e.target.value) })}
+                        onChange={(e) =>
+                          setTask({ ...task, duration: Number(e.target.value) })
+                        }
                       />
                     </div>
                   </div>

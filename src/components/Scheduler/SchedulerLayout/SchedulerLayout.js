@@ -13,14 +13,7 @@ import { async } from "@firebase/util";
 
 const SchedulerLayout = () => {
   // call setDummySchedules first to set dummy schedules then call getSchedules
-
-  let {
-    getTasks,
-    addNewTask,
-    setDummySchedules,
-    getSchedules,
-    addNewSchedule,
-  } = useContext(TasksContext);
+  const { getEvents } = useContext(TasksContext);
   const { apiCalendar, handleGoogleCalenderSignUp } = useUserAuth();
   let { component } = useParams();
   const [tab, setTab] = useState(1);
@@ -37,31 +30,22 @@ const SchedulerLayout = () => {
     handleGoogleCalenderSignUp("sign-in");
   }, []);
 
-  const getAllEvents = async () => {
-    apiCalendar
-      .listUpcomingEvents(30)
-      .then(({ result }) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-
   const createEventHandler = async () => {
     let endTime = new Date();
-    endTime.setHours(endTime.getHours() + 1);
+    endTime.setHours(endTime.getHours() + 10);
+    let startTime = new Date();
+    startTime.setHours(startTime.getHours() + 7);
     apiCalendar
       .createEvent(
         {
           start: {
-            dateTime: new Date(),
+            dateTime: startTime,
           },
           end: {
             dateTime: endTime,
           },
-          description: "Nothing",
-          summary: "Code Night",
+          description: "Nothfasdfasdfing",
+          summary: "Ckljasdbhgf",
         },
         "primary"
       )
@@ -77,8 +61,6 @@ const SchedulerLayout = () => {
 
   return (
     <>
-      <h1 onClick={getAllEvents}>Button</h1>
-      <h1 onClick={createEventHandler}>Create Event</h1>
       <SchedulerNavbar tab={tab} />
       <div className={styles.container}>
         <Sidebar height="80vh" tab={tab} setTasks={setTasks} />
