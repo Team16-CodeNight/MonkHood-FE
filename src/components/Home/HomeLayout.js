@@ -1,18 +1,106 @@
-/* This example requires Tailwind CSS v2.0+ */
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
-import { Link } from "react-router-dom";
-import Features from "./Features.js";
+import { Link, useNavigate } from "react-router-dom";
+import Features from "./Features";
+import { useUserAuth } from "../../contexts/UserAuthContextProvider";
 import FAQ from "./FAQ";
 
 const navigation = [
   { name: "Product", src: "#" },
-  { name: "Features" , src:"#" },
+  { name: "Features", src: "#" },
   { name: "FaQs", src: "#" },
 ];
 
 const HomeLayout = () => {
+  const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const closeDialog = () => {
+    setOpen(false);
+  };
+
+  const { user, googleSignIn, userData, logOut } = useUserAuth();
+
+  const handleLogOut = async () => {
+    try {
+      await logOut();
+      localStorage.removeItem("user-token");
+      navigate("/");
+      //window.location.reload();
+    } catch {
+      navigate("/error/Something went wrong");
+    }
+  };
+
+  const [loadingForSignUp, setLoadingForSignUp] = useState(false);
+  const [loadingForSignIn, setLoadingForSignIn] = useState(false);
+
+  const handleGoogleSignInForSignUp = async (e) => {
+    e.preventDefault();
+    try {
+      await googleSignIn();
+      setLoadingForSignUp(true);
+      // navigate to home page
+      setTimeout(() => {
+        setLoadingForSignUp(false);
+        console.log("user is:");
+        console.log(user);
+        //window.location.reload();
+        navigate("/user/scheduler");
+        closeDialog();
+      }, 1000);
+    } catch (errorForSignUp) {
+      /**
+       * if user closed the google signIn pop
+       * then do nothing otherwise navigate to
+       * errorForSignUp page
+       */
+      if (
+        errorForSignUp.message ===
+          "Firebase: Error (auth/popup-closed-by-user)." ||
+        errorForSignUp.message ===
+          "Firebase: Error (auth/cancelled-popup-request)."
+      ) {
+      } else {
+        if (errorForSignUp !== null) alert(errorForSignUp.message);
+        else {
+          navigate("/error/Something Went Wrong ⚠️");
+        }
+      }
+    }
+  };
+
+  // const handleGoogleSignIn = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await googleSignIn();
+  //     setLoadingForSignIn(true);
+  //     // navigate to home page
+
+  //     setLoadingForSignIn(false);
+  //     //window.location.reload();
+  //     navigate("/");
+  //     closeDialog();
+  //   } catch (errorForSignIn) {
+  //     /**
+  //      * if user closed the google signIn pop
+  //      * then do nothing otherwise navigate to
+  //      * errorForSignIn page
+  //      */
+  //     if (
+  //       errorForSignIn.message ===
+  //         "Firebase: Error (auth/popup-closed-by-user)." ||
+  //       errorForSignIn.message ===
+  //         "Firebase: Error (auth/cancelled-popup-request)."
+  //     ) {
+  //     } else {
+  //       if (errorForSignIn !== null) alert(errorForSignIn.message);
+  //       else navigate("/errorForSignIn");
+  //     }
+  //   }
+  // };
+
   return (
     <>
       <div className="relative bg-gray-50 overflow-hidden">
@@ -48,7 +136,6 @@ const HomeLayout = () => {
             </svg>
           </div>
         </div>
-
         <div className="relative pt-6 pb-16 sm:pb-24">
           <Popover>
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -76,12 +163,21 @@ const HomeLayout = () => {
                 </div>
                 <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                   <span className="inline-flex rounded-md shadow">
-                    <Link
-                      to="#"
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
-                    >
-                      Log in
-                    </Link>
+                    {user === null ? (
+                      <button
+                        onClick={handleGoogleSignInForSignUp}
+                        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                      >
+                        SignUp/SignIn
+                      </button>
+                    ) : (
+                      <button
+                        onClick={handleLogOut}
+                        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                      >
+                        Logout
+                      </button>
+                    )}
                   </span>
                 </div>
               </nav>
@@ -100,7 +196,8 @@ const HomeLayout = () => {
                 <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                   <div className="px-5 pt-4 flex items-center justify-between">
                     <div>
-                      <img src="monkhood-logo.png" alt="img"/><title>MonkHood</title>
+                      <img src="monkhood-logo.png" alt="img" />
+                      <title>MonkHood</title>
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -120,9 +217,21 @@ const HomeLayout = () => {
                       </Link>
                     ))}
                   </div>
-                  <Link to="#" className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-1000">
-                    Log in
-                  </Link>
+                  {user === null ? (
+                    <button
+                      onClick={handleGoogleSignInForSignUp}
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                    >
+                      SignUp/SignIn
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handleLogOut}
+                      className="block w-full px-5 py-3 text-center font-medium text-indigo-600 bg-gray-50 hover:bg-gray-100"
+                    >
+                      Logout
+                    </button>
+                  )}
                 </div>
               </Popover.Panel>
             </Transition>
@@ -133,10 +242,12 @@ const HomeLayout = () => {
               <p className="text-4xl tracking-tight font-extrabold text-orangered-500 sm:text-4xl md:text-5xl">
                 <span className="block x1:outline">MonkHood</span>
                 <p>
-                  <span className="block text-black-1000 x2:inline"> Your Professionl Zen Lifestyle Planner </span></p>
+                  <span className="block text-black-1000 x2:inline"> Your Professionl Zen Lifestyle Planner </span>
+                </p>
               </p>
               <p className="mt-3 max-w-md mx-auto text-base text-gray-1000 sm:text-lg md:mt-5 md:text-0xl md:max-w-2xl">
-                Clearly stating the meeting objective gives your team a heads-up on what’s coming their way. At the very least, they’ll know whether to bring a project report or a beer to the meeting. 😜
+                Clearly stating the meeting objective gives your team a heads-up on what’s coming their way. At the very least, they’ll know whether
+                to bring a project report or a beer to the meeting. 😜
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
@@ -156,18 +267,21 @@ const HomeLayout = () => {
       <FAQ />
       <footer className="bg-gray-800" aria-labelledby="footer-heading">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        
-              
-        <div className="mt-8 border-t border-white-700 pt-8 md:flex md:items-center md:justify-between">
-          <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            &copy; 2020 MonkHood, Inc. All rights reserved.
-          </p>
+          <div className="mt-8 border-t border-white-700 pt-8 md:flex md:items-center md:justify-between">
+            <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">&copy; 2020 MonkHood, Inc. All rights reserved.</p>
+          </div>
         </div>
-      </div>
       </footer>
-      
     </>
   );
 };
 
 export default HomeLayout;
+
+/*
+ <GoogleButton
+  type="dark"
+  onClick={handleGoogleSignInForSignUp}
+  label="Sign up with Google"
+/>
+ */
