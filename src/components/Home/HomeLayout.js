@@ -12,7 +12,7 @@ const navigation = [
   { name: "Company", src: "#" },
 ];
 
-const Home = () => {
+const HomeLayout = () => {
   return (
     <>
       <div className="relative bg-gray-50 overflow-hidden">
@@ -164,4 +164,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeLayout;
