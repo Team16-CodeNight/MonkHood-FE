@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { PlusSmIcon } from "@heroicons/react/solid";
 
 import AddEventButton from "./AddEventButton";
-import AddTaskModal from "./AddTaskModal";
+// import AddTaskModal from "./AddTaskModal";
 import styles from "./Sidebar.module.css";
 
 const handleAddEvent = () => {
@@ -10,11 +10,11 @@ const handleAddEvent = () => {
 };
 
 const Sidebar = ({ tab }) => {
-  const [open, setOpen] = useState(false);
+  // const [open, setOpen] = useState(false);
 
   return (
     <div className={styles.container}>
-      {tab == 1 && (
+      {/* {tab == 1 && (
         <>
           <button
             type="button"
@@ -28,7 +28,7 @@ const Sidebar = ({ tab }) => {
           </button>
           <AddTaskModal open={open} setOpen={setOpen} setTasks/>
         </>
-      )}
+      )} */}
       {tab == 2 && <AddEventButton handleAddEvent={handleAddEvent} />}
     </div>
   );

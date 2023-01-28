@@ -63,10 +63,10 @@ const SchedulerLayout = () => {
     <>
       <SchedulerNavbar tab={tab} />
       <div className={styles.container}>
-        <Sidebar height="80vh" tab={tab} setTasks={setTasks} />
-        {component == "tasks" && <Tasks tasks={tasks} />}
-        {component == "calender" && <Calender />}
-        {component == "after-work" && <AfterWork />}
+        {component !== "tasks" && <Sidebar height="80vh" tab={tab} setTasks={setTasks} />}
+        {component === "tasks" && <Tasks tasks={tasks} />}
+        {component === "calender" && <Calender />}
+        {component === "after-work" && <AfterWork />}
       </div>
     </>
   );
