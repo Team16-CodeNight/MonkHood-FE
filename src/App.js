@@ -3,6 +3,10 @@ import { HomeLayout, SchedulerLayout } from "./components";
 import TasksState from "./contexts/TasksState";
 import ProtectedRoute from "./ProtectedRoute";
 
+const page404 = () => {
+  return <>Page Not Found!</>;
+};
+
 function App() {
   return (
     <div className="App">
@@ -12,13 +16,14 @@ function App() {
           <Routes>
             <Route path="/" element={<HomeLayout />} />
             <Route
-              path="/user/scheduler"
+              path="/user/:component"
               element={
                 <ProtectedRoute>
                   <SchedulerLayout />
                 </ProtectedRoute>
               }
             />
+            <Route path="*" element={page404} />
           </Routes>
         </Router>
       </TasksState>

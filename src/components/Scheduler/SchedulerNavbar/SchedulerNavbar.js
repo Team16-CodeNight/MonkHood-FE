@@ -5,12 +5,14 @@ import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { PlusSmIcon } from "@heroicons/react/solid";
 import { useUserAuth } from "../../contexts/UserAuthContextProvider";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import styles from "./SchedulerNavbar.module.css";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const SchedulerNavbar = () => {
+const SchedulerNavbar = ({ tab }) => {
   const { userData, logOut } = useUserAuth();
   const navigate = useNavigate();
 
@@ -24,13 +26,15 @@ const SchedulerNavbar = () => {
       navigate("/error/Something went wrong");
     }
   };
-
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
+          <div className="px-4 sm:px-6 lg:px-8" style={{ width: "100%" }}>
+            <div
+              className="flex justify-between h-16 "
+              style={{ width: "100%" }}
+            >
               <div className="flex">
                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
@@ -46,41 +50,52 @@ const SchedulerNavbar = () => {
                 <div className="flex-shrink-0 flex items-center">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                    src="/monkhood-logo.png"
                     alt="Workflow"
                   />
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
+                    src="/monkhood-logo.png"
                     alt="Workflow"
                   />
+                  <h2
+                    className={`${styles.logoText} items-center text-lg font-medium`}
+                  >
+                    MonkHood
+                  </h2>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a
-                    href="#"
-                    className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  <Link
+                    to="/user/tasks"
+                    className={`${
+                      tab == 1
+                        ? "border-indigo-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300"
+                    }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
-                    Dashboard
-                  </a>
-                  <a
-                    href="#"
-                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                    To Do Tasks
+                  </Link>
+                  <Link
+                    to="/user/calender"
+                    className={`${
+                      tab == 2
+                        ? "border-indigo-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300"
+                    }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
-                    Team
-                  </a>
-                  <a
-                    href="#"
-                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                    Calender View
+                  </Link>
+                  <Link
+                    to="/user/after-work"
+                    className={`${
+                      tab == 3
+                        ? "border-indigo-500 text-gray-900"
+                        : "border-transparent text-gray-500 hover:border-gray-300"
+                    }    inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
-                    Projects
-                  </a>
-                  <a
-                    href="#"
-                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-                  >
-                    Calendar
-                  </a>
+                    After Work Hours
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center">
@@ -93,7 +108,7 @@ const SchedulerNavbar = () => {
                       className="-ml-1 mr-2 h-5 w-5"
                       aria-hidden="true"
                     />
-                    <span>New Job</span>
+                    <span>New Task</span>
                   </button>
                 </div>
                 <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
@@ -182,21 +197,14 @@ const SchedulerNavbar = () => {
                 href="#"
                 className="bg-indigo-50 border-indigo-500 text-indigo-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
               >
-                Dashboard
+                Schedule
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
                 href="#"
                 className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
               >
-                Team
-              </Disclosure.Button>
-              <Disclosure.Button
-                as="a"
-                href="#"
-                className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium sm:pl-5 sm:pr-6"
-              >
-                Projects
+                After Works Hours
               </Disclosure.Button>
               <Disclosure.Button
                 as="a"
