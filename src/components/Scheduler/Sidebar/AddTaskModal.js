@@ -1,10 +1,54 @@
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { update } from "../../../Util/DBUtil";
+import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
 
 const AddTaskModal = ({ open, setOpen }) => {
   const cancelButtonRef = useRef(null);
-
+  const { userData } = useUserAuth();
   // const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState({
+    title: "",
+    duration: 0,
+    category: "",
+    description: "",
+  });
+
+  const clear = () => {
+    setTask({
+      title: "",
+      duration: 0,
+      category: "",
+      description: "",
+    });
+  };
+
+  const handleAddTask = async () => {
+    console.log("userData", userData);
+    try {
+      console.log("task", task);
+      let newTaskArray = userData?.tasks;
+      newTaskArray.push(task);
+      console.log("user id is:");
+      console.log(userData.urlName);
+      await update(newTaskArray, userData.urlName);
+      setOpen(false);
+      clear();
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  // <div className="flex-shrink-0">
+  //   <button
+  //     type="button"
+  //     onClick={updateTask}
+  //     className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+  //   >
+  //     <PlusSmIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
+  //     <span>New Task</span>
+  //   </button>
+  // </div>;
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -52,100 +96,56 @@ const AddTaskModal = ({ open, setOpen }) => {
                         name="title"
                         id="title"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                        placeholder="you@example.com"
+                        placeholder="Add Sample Test Cases"
+                        onChange={(e) => setTask({ ...task, title: e.target.value })}
                       />
                     </div>
                   </div>
 
                   <div className="sm:col-span-4">
-                    <label htmlFor="about" className="block text-sm font-medium text-gray-700">
-                      About
+                    <label htmlFor="desc" className="block text-sm font-medium text-gray-700">
+                      Description
                     </label>
                     <div className="mt-1">
                       <textarea
-                        id="about"
-                        name="about"
+                        id="desc"
+                        name="desc"
                         rows={3}
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border border-gray-300 rounded-md"
                         defaultValue={""}
+                        onChange={(e) => setTask({ ...task, description: e.target.value })}
                       />
                     </div>
                   </div>
 
-                  <div className="sm:col-span-3">
-                    <label htmlFor="country" className="block text-sm font-medium text-gray-700">
-                      Country
-                    </label>
-                    <div className="mt-1">
-                      <select
-                        id="country"
-                        name="country"
-                        autoComplete="country-name"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      >
-                        <option>United States</option>
-                        <option>Canada</option>
-                        <option>Mexico</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-6">
-                    <label htmlFor="street-address" className="block text-sm font-medium text-gray-700">
-                      Street address
+                  <div className="sm:col-span-4">
+                    <label htmlFor="category" className="block text-sm font-medium text-gray-700">
+                      Category
                     </label>
                     <div className="mt-1">
                       <input
                         type="text"
-                        name="street-address"
-                        id="street-address"
-                        autoComplete="street-address"
+                        name="category"
+                        id="category"
+                        autoComplete="duration"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => setTask({ ...task, category: e.target.value })}
                       />
                     </div>
                   </div>
 
-                  <div className="sm:col-span-2">
-                    <label htmlFor="city" className="block text-sm font-medium text-gray-700">
-                      City
+                  <div className="sm:col-span-4">
+                    <label htmlFor="duration" className="block text-sm font-medium text-gray-700">
+                      Duration (in mins)
                     </label>
                     <div className="mt-1">
                       <input
-                        type="text"
-                        name="city"
-                        id="city"
-                        autoComplete="address-level2"
+                        type="number"
+                        name="duration"
+                        id="duration"
+                        autoComplete="duration"
                         className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label htmlFor="region" className="block text-sm font-medium text-gray-700">
-                      State / Province
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="region"
-                        id="region"
-                        autoComplete="address-level1"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="sm:col-span-2">
-                    <label htmlFor="postal-code" className="block text-sm font-medium text-gray-700">
-                      ZIP / Postal code
-                    </label>
-                    <div className="mt-1">
-                      <input
-                        type="text"
-                        name="postal-code"
-                        id="postal-code"
-                        autoComplete="postal-code"
-                        className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+                        onChange={(e) => setTask({ ...task, duration: Number(e.target.value) })}
                       />
                     </div>
                   </div>
@@ -155,14 +155,17 @@ const AddTaskModal = ({ open, setOpen }) => {
                 <button
                   type="button"
                   className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:col-start-2 sm:text-sm"
-                  onClick={() => setOpen(false)}
+                  onClick={handleAddTask}
                 >
                   Add
                 </button>
                 <button
                   type="button"
                   className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:col-start-1 sm:text-sm"
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    clear();
+                  }}
                   ref={cancelButtonRef}
                 >
                   Cancel

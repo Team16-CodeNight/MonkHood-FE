@@ -2,13 +2,11 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
-import { PlusSmIcon } from "@heroicons/react/solid";
 import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import styles from "./SchedulerNavbar.module.css";
-import { addTask, update } from "../../../Util/DBUtil";
-import { serverTimestamp } from "@firebase/firestore";
+// import { serverTimestamp } from "@firebase/firestore";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -28,72 +26,31 @@ const SchedulerNavbar = ({ tab }) => {
     }
   };
 
-  const updateTask = async () => {
-    try {
-      let newTaskArray = userData.tasks;
-      newTaskArray.push({
-        title: "do GFG",
-        duration: 4,
-        category: "usual",
-        description: "Let's do GFG",
-      });
-      console.log("user id is:");
-      console.log(userData.urlName);
-
-      await update(newTaskArray, userData.urlName);
-    } catch (error) {
-      alert(error);
-    }
-  };
-
-  console.log(userData);
-
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
           <div className="px-4 sm:px-6 lg:px-8" style={{ width: "100%" }}>
-            <div
-              className="flex justify-between h-16 "
-              style={{ width: "100%" }}
-            >
+            <div className="flex justify-between h-16 " style={{ width: "100%" }}>
               <div className="flex">
                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                     <span className="sr-only">Open main menu</span>
-                    {open ? (
-                      <XIcon className="block h-6 w-6" aria-hidden="true" />
-                    ) : (
-                      <MenuIcon className="block h-6 w-6" aria-hidden="true" />
-                    )}
+                    {open ? <XIcon className="block h-6 w-6" aria-hidden="true" /> : <MenuIcon className="block h-6 w-6" aria-hidden="true" />}
                   </Disclosure.Button>
                 </div>
                 <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="/monkhood-logo.png"
-                    alt="Workflow"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="/monkhood-logo.png"
-                    alt="Workflow"
-                  />
-                  <h2
-                    className={`${styles.logoText} items-center text-lg font-medium`}
-                  >
-                    MonkHood
-                  </h2>
+                  <img className="block lg:hidden h-8 w-auto" src="/monkhood-logo.png" alt="Workflow" />
+                  <img className="hidden lg:block h-8 w-auto" src="/monkhood-logo.png" alt="Workflow" />
+                  <h2 className={`${styles.logoText} items-center text-lg font-medium`}>MonkHood</h2>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <Link
                     to="/user/tasks"
                     className={`${
-                      tab == 1
-                        ? "border-indigo-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300"
+                      tab == 1 ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300"
                     }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
                     To Do Tasks
@@ -101,9 +58,7 @@ const SchedulerNavbar = ({ tab }) => {
                   <Link
                     to="/user/calender"
                     className={`${
-                      tab == 2
-                        ? "border-indigo-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300"
+                      tab == 2 ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300"
                     }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
                     Calender View
@@ -111,9 +66,7 @@ const SchedulerNavbar = ({ tab }) => {
                   <Link
                     to="/user/after-work"
                     className={`${
-                      tab == 3
-                        ? "border-indigo-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300"
+                      tab == 3 ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300"
                     }    inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
                     After Work Hours
@@ -121,19 +74,6 @@ const SchedulerNavbar = ({ tab }) => {
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="flex-shrink-0">
-                  <button
-                    type="button"
-                    onClick={updateTask}
-                    className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                  >
-                    <PlusSmIcon
-                      className="-ml-1 mr-2 h-5 w-5"
-                      aria-hidden="true"
-                    />
-                    <span>New Task</span>
-                  </button>
-                </div>
                 <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
                   <button
                     type="button"
@@ -148,11 +88,7 @@ const SchedulerNavbar = ({ tab }) => {
                     <div>
                       <Menu.Button className="bg-white rounded-full flex text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         <span className="sr-only">Open user menu</span>
-                        <img
-                          className="h-8 w-8 rounded-full"
-                          src={userData && userData.profilePic}
-                          alt=""
-                        />
+                        <img className="h-8 w-8 rounded-full" src={userData && userData.profilePic} alt="" />
                       </Menu.Button>
                     </div>
                     <Transition
@@ -167,26 +103,14 @@ const SchedulerNavbar = ({ tab }) => {
                       <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
+                            <a href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
                               Your Profile
                             </a>
                           )}
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
+                            <a href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
                               Settings
                             </a>
                           )}
@@ -195,10 +119,7 @@ const SchedulerNavbar = ({ tab }) => {
                           {({ active }) => (
                             <button
                               onClick={handleLogOut}
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
+                              className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
                             >
                               Sign out
                             </button>
@@ -243,12 +164,8 @@ const SchedulerNavbar = ({ tab }) => {
                   <img className="h-10 w-10 rounded-full" src={""} alt="" />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium text-gray-800">
-                    Tom Cook
-                  </div>
-                  <div className="text-sm font-medium text-gray-500">
-                    tom@example.com
-                  </div>
+                  <div className="text-base font-medium text-gray-800">Tom Cook</div>
+                  <div className="text-sm font-medium text-gray-500">tom@example.com</div>
                 </div>
                 <button
                   type="button"
