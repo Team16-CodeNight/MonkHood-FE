@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { PlusSmIcon } from "@heroicons/react/solid";
-import { useUserAuth } from "../../contexts/UserAuthContextProvider";
+import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import styles from "./SchedulerNavbar.module.css";
