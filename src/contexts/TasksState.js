@@ -29,16 +29,55 @@ export default function TasksState(props) {
 
     return newEventsArray;
   };
+  const getStartTime= (duration,events)=>{ //duration in ms
+    console.log("called getstartTime",events);
+    let endTime = new Date();
+    let startTime = '';
+    endTime.setHours(9);
+    endTime.setMinutes(0);
+    endTime.setMilliseconds(0);
+    if(events.length==0)
+      return endTime;
+    
+    console.log(events)
 
-  const addEventToGoogleCalendar = (todo, startTime, endTime)=>{ //call by refrence
-    apiCalendar.create({
+    for(let i=0; i<events.length; i++){
+      startTime = new Date(events[i].start.dateTime);
+      let diff =Math.abs(startTime-endTime);
+      console.log(endTime, startTime, diff, duration);
+      if(diff>=duration){
+        return endTime;
+      }else{
+        endTime = new Date(events[i].end.dateTime);
+      }
+    }
+
+    startTime.setHours(11);
+    startTime.setMinutes(0);
+    startTime.setMilliseconds(0);
+    let diff = Math.abs(startTime-endTime);
+    if(diff>=duration){
+      return endTime;
+    }
+
+    return null;
+  }
+  const addEventToGoogleCalendar = async (todo, startTime, endTime)=>{ //call by refrence
+    const events = await apiCalendar
+    .listUpcomingEvents(50)
+    console.log(events);
+    const newStart = getStartTime(todo.duration*60000,events?.result?.items)
+    const newEnd = new Date(newStart);
+    newEnd.setMinutes(newEnd.getMinutes()+todo.duration);
+    console.log(newStart+" this is new start");
+    apiCalendar.createEvent({
       summary:todo.title,
       description:todo.description,
       start: {
-        dateTime : startTime
+        dateTime : newStart
       },
       end : {
-        dateTime : endTime
+        dateTime : newEnd
       }
     }, "primary").then((result)=>{
       console.log(result);

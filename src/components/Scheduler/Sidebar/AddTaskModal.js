@@ -38,10 +38,13 @@ const AddTaskModal = ({ open, setOpen }) => {
     endTime.setMilliseconds(0);
     if(events.length==0)
       return endTime;
-      
+    
+    console.log(events)
+
     for(let i=0; i<events.length; i++){
       startTime = new Date(events[i].start.dateTime);
-      let diff = endTime-startTime;
+      let diff = startTime-endTime;
+      console.log(endTime, startTime, diff, duration);
       if(diff>=duration){
         return endTime;
       }else{
@@ -78,15 +81,15 @@ const AddTaskModal = ({ open, setOpen }) => {
       console.log("return getstartTime");
       if(startTime){
         let endTime = new Date(startTime);
-        endTime.setHours(endTime.getHours() + task.duration);
-        addEventToGoogleCalendar(userData?.tasks, startTime, endTime);
+        endTime.setMinutes(endTime.getMinutes() + task.duration);
+        addEventToGoogleCalendar(task, startTime, endTime);
       }else{
         console.log("cant add task");
       }
       
       clear();
     } catch (error) {
-      alert(error.printStack());
+      alert(error);
     }
   };
   // console.log(userData);

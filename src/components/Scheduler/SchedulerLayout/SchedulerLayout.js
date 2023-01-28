@@ -26,7 +26,7 @@ const SchedulerLayout = () => {
   }, [component]);
 
   useEffect(() => {
-    if (typeof window === undefined) handleGoogleCalenderSignUp("sign-in");
+    handleGoogleCalenderSignUp("sign-in");
     // console.log("called....");
   }, []);
 
