@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Modal } from "react-responsive-modal";
-import { useUserAuth } from "../../context/UserAuthContextProvider";
+import { useUserAuth } from "../../contexts/UserAuthContextProvider";
 import { useNavigate } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import Loading from "../../Loader/Loading/Loading";
