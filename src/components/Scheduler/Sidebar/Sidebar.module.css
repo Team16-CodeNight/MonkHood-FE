@@ -1,6 +1,13 @@
 .container {
   width: 20%;
-  border: 1px solid red;
   height: 90vh;
   max-height: 90vh;
+  padding: 1%;
+  /* border: 1px solid red; */
+}
+
+/* ADD EVENT BUTTON */
+.addEventButtonContainer {
+  width: 100%;
+  /* border: 1px solid red; */
 }
