@@ -12,7 +12,13 @@ import styles from "./SchedulerLayout.module.css";
 const SchedulerLayout = () => {
   // call setDummySchedules first to set dummy schedules then call getSchedules
 
-  let { getTasks, addNewTask, setDummySchedules, getSchedules, addNewSchedule } = useContext(TasksContext);
+  let {
+    getTasks,
+    addNewTask,
+    setDummySchedules,
+    getSchedules,
+    addNewSchedule,
+  } = useContext(TasksContext);
   let { component } = useParams();
   const [tab, setTab] = useState(1);
 
