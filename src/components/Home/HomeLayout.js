@@ -1,10 +1,9 @@
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from "react";
 import { Popover, Transition } from "@headlessui/react";
 import { MenuIcon, XIcon } from "@heroicons/react/outline";
 import { Link, useNavigate } from "react-router-dom";
 import Features from "./Features";
-import { useUserAuth } from "../../context/UserAuthContextProvider";
+import { useUserAuth } from "../../contexts/UserAuthContextProvider";
 import GoogleButton from "react-google-button";
 
 const navigation = [
@@ -27,6 +26,7 @@ const HomeLayout = () => {
   const handleLogOut = async () => {
     try {
       await logOut();
+      localStorage.removeItem("user-token");
       navigate("/");
       //window.location.reload();
     } catch {
@@ -48,7 +48,7 @@ const HomeLayout = () => {
         console.log("user is:");
         console.log(user);
         //window.location.reload();
-        navigate("/");
+        navigate("/user/scheduler");
         closeDialog();
       }, 1000);
     } catch (errorForSignUp) {
@@ -101,7 +101,7 @@ const HomeLayout = () => {
   //     }
   //   }
   // };
-  console.log(userData);
+
   return (
     <>
       <div className="relative bg-gray-50 overflow-hidden">
@@ -215,11 +215,12 @@ const HomeLayout = () => {
                 <div className="hidden md:absolute md:flex md:items-center md:justify-end md:inset-y-0 md:right-0">
                   <span className="inline-flex rounded-md shadow">
                     {user === null ? (
-                      <GoogleButton
-                        type="dark"
+                      <button
                         onClick={handleGoogleSignInForSignUp}
-                        label="Sign up with Google"
-                      />
+                        className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                      >
+                        SignUp/SignIn
+                      </button>
                     ) : (
                       <button
                         onClick={handleLogOut}
@@ -274,11 +275,12 @@ const HomeLayout = () => {
                     ))}
                   </div>
                   {user === null ? (
-                    <GoogleButton
-                      type="dark"
+                    <button
                       onClick={handleGoogleSignInForSignUp}
-                      label="Sign up with Google"
-                    />
+                      className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50"
+                    >
+                      SignUp/SignIn
+                    </button>
                   ) : (
                     <button
                       onClick={handleLogOut}
@@ -335,3 +337,11 @@ const HomeLayout = () => {
 };
 
 export default HomeLayout;
+
+/*
+ <GoogleButton
+  type="dark"
+  onClick={handleGoogleSignInForSignUp}
+  label="Sign up with Google"
+/>
+ */

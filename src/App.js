@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomeLayout, SchedulerLayout } from "./components";
 import TasksState from "./contexts/TasksState";
+import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
   return (
@@ -10,7 +11,14 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<HomeLayout />} />
-            <Route path="/user/scheduler" element={<SchedulerLayout />} />
+            <Route
+              path="/user/scheduler"
+              element={
+                <ProtectedRoute>
+                  <SchedulerLayout />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
         </Router>
       </TasksState>
