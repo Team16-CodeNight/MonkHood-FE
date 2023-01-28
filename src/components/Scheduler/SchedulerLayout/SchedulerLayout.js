@@ -12,15 +12,10 @@ import styles from "./SchedulerLayout.module.css";
 const SchedulerLayout = () => {
   // call setDummySchedules first to set dummy schedules then call getSchedules
 
-  let {
-    getTasks,
-    addNewTask,
-    setDummySchedules,
-    getSchedules,
-    addNewSchedule,
-  } = useContext(TasksContext);
+  let { getTasks, addNewTask, setDummySchedules, getSchedules, addNewSchedule } = useContext(TasksContext);
   let { component } = useParams();
   const [tab, setTab] = useState(1);
+  const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
     if (component == "tasks") setTab(1);
@@ -32,8 +27,8 @@ const SchedulerLayout = () => {
     <>
       <SchedulerNavbar tab={tab} />
       <div className={styles.container}>
-        <Sidebar height="80vh" tab={tab} />
-        {component == "tasks" && <Tasks />}
+        <Sidebar height="80vh" tab={tab} setTasks={setTasks} />
+        {component == "tasks" && <Tasks tasks={tasks} />}
         {component == "calender" && <Calender />}
         {component == "after-work" && <AfterWork />}
       </div>
