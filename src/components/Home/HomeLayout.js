@@ -133,7 +133,7 @@ const HomeLayout = () => {
               <p className="text-4xl tracking-tight font-extrabold text-orangered-500 sm:text-4xl md:text-5xl">
                 <span className="block x1:outline">MonkHood</span>
                 <p>
-                  <span className="block text-black-1000 x2:inline"> Your Professionl Zen Lifestyle Planner </span></p>
+                  <span className="block text-#3F51B5-1000 x2:inline"> Your Professionl Zen Lifestyle Planner </span></p>
               </p>
               <p className="mt-3 max-w-md mx-auto text-base text-gray-1000 sm:text-lg md:mt-5 md:text-0xl md:max-w-2xl">
                 Clearly stating the meeting objective gives your team a heads-up on what’s coming their way. At the very least, they’ll know whether to bring a project report or a beer to the meeting. 😜
@@ -160,7 +160,7 @@ const HomeLayout = () => {
               
         <div className="mt-8 border-t border-white-700 pt-8 md:flex md:items-center md:justify-between">
           <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-            &copy; 2020 MonkHood, Inc. All rights reserved.
+            &Copyright; 2020 MonkHood Inc. All rights reserved.
           </p>
         </div>
       </div>
