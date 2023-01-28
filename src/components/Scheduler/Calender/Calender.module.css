@@ -1,6 +1,7 @@
 .container {
   width: 80%;
-  border: 1px solid red;
   max-height: 90vh;
+  padding: 1%;
   overflow: auto;
+  border: 1px solid red;
 }
