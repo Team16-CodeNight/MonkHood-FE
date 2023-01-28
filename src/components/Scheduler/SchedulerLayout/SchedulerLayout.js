@@ -26,7 +26,7 @@ const SchedulerLayout = () => {
     <>
       <SchedulerNavbar tab={tab} />
       <div className={styles.container}>
-        <Sidebar height="80vh" />
+        <Sidebar height="80vh" tab={tab} />
         {component == "tasks" && <Tasks />}
         {component == "calender" && <Calender />}
         {component == "after-work" && <AfterWork />}
