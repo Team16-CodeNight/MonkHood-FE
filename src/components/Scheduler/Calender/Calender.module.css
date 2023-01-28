@@ -1,0 +1,6 @@
+.container {
+  width: 80%;
+  border: 1px solid red;
+  max-height: 90vh;
+  overflow: auto;
+}
