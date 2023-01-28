@@ -30,35 +30,6 @@ const SchedulerLayout = () => {
     handleGoogleCalenderSignUp("sign-in");
   }, []);
 
-  const createEventHandler = async () => {
-    let endTime = new Date();
-    endTime.setHours(endTime.getHours() + 10);
-    let startTime = new Date();
-    startTime.setHours(startTime.getHours() + 7);
-    apiCalendar
-      .createEvent(
-        {
-          start: {
-            dateTime: startTime,
-          },
-          end: {
-            dateTime: endTime,
-          },
-          description: "Nothfasdfasdfing",
-          summary: "Ckljasdbhgf",
-        },
-        "primary"
-      )
-      .then((result) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    console.log("called...");
-  };
-
   return (
     <>
       <SchedulerNavbar tab={tab} />

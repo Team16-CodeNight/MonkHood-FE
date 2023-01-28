@@ -1,10 +1,12 @@
-import { Fragment, useRef, useState } from "react";
+import { Fragment, useContext, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { v4 as uuidv4 } from "uuid";
 import { update } from "../../../Util/DBUtil";
 import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
+import TasksContext from "../../../contexts/TasksContext";
 
 const AddTaskModal = ({ open, setOpen }) => {
+  let {events, addEventToGoogleCalendar} = useContext(TasksContext);
   const cancelButtonRef = useRef(null);
   const { userData } = useUserAuth();
   // const [tasks, setTasks] = useState([]);
@@ -27,6 +29,37 @@ const AddTaskModal = ({ open, setOpen }) => {
     });
   };
 
+  const getStartTime= (duration)=>{ //duration in ms
+    console.log("called getstartTime");
+    let endTime = new Date();
+    let startTime = '';
+    endTime.setHours(9);
+    endTime.setMinutes(0);
+    endTime.setMilliseconds(0);
+    if(events.length==0)
+      return endTime;
+      
+    for(let i=0; i<events.length; i++){
+      startTime = new Date(events[i].start.dateTime);
+      let diff = endTime-startTime;
+      if(diff>=duration){
+        return endTime;
+      }else{
+        endTime = new Date(events[i].end.dateTime);
+      }
+    }
+
+    startTime.setHours(11);
+    startTime.setMinutes(0);
+    startTime.setMilliseconds(0);
+    let diff = endTime-startTime;
+    if(diff>=duration){
+      return endTime;
+    }
+
+    return null;
+  }
+
   const handleAddTask = async () => {
     // console.log("userData", userData);
     try {
@@ -38,12 +71,25 @@ const AddTaskModal = ({ open, setOpen }) => {
       // console.log(userData.urlName);
       await update(newTaskArray, userData.urlName);
       setOpen(false);
+      
+      // adding event into calendar
+      let duration = task.duration*60000;
+      let startTime = getStartTime(duration);
+      console.log("return getstartTime");
+      if(startTime){
+        let endTime = new Date(startTime);
+        endTime.setHours(endTime.getHours() + task.duration);
+        addEventToGoogleCalendar(userData?.tasks, startTime, endTime);
+      }else{
+        console.log("cant add task");
+      }
+      
       clear();
     } catch (error) {
-      alert(error);
+      alert(error.printStack());
     }
   };
-  console.log(userData);
+  // console.log(userData);
   // <div className="flex-shrink-0">
   //   <button
   //     type="button"

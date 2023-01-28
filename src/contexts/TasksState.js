@@ -8,27 +8,53 @@ export default function TasksState(props) {
 
   const getEventsArray = (eventsArray) => {
     let newEventsArray = [];
-    for (let index = 0; index < eventsArray.length; index++) {
-      let currentDate = new Date();
-      let startDate = new Date(eventsArray[index].start.dateTime);
-      let endDate = new Date(eventsArray[index].end.dateTime);
-      if (
-        startDate.getDate() === currentDate.getDate() &&
-        endDate.getDate() === currentDate.getDate()
-      ) {
-        newEventsArray.push({ startDate, endDate });
-      }
+    let firstDate = new Date();
+    lastDate.setHours(9);
+    lastDate.setMinutes(0);
+    lastDate.setSeconds(0);
+    lastDate.setMilliseconds(0);
+
+    let lastDate = new Date();
+    lastDate.setHours(11);
+    lastDate.setMinutes(0);
+    lastDate.setSeconds(0);
+    lastDate.setMilliseconds(0);
+
+    for(let i=0; i<eventsArray.length; i++){
+      let event = eventsArray[i];
+      let startDate = event.start.dayTime;
+      if(startDate>firstDate && startDate<lastDate)
+        newEventsArray.push(event);
     }
-    setEvents(newEventsArray);
+
+    return newEventsArray;
   };
 
-  const schedulEvent = (event) => {};
+  const addEventToGoogleCalendar = (todo, startTime, endTime)=>{ //call by refrence
+    apiCalendar.create({
+      summary:todo.title,
+      description:todo.description,
+      start: {
+        dateTime : startTime
+      },
+      end : {
+        dateTime : endTime
+      }
+    }, "primary").then((result)=>{
+      console.log(result);
+      todo.id = result.result.id;
+    });
+  }
+
+  const deleteEventFromCalendar = (eventId)=>{
+    apiCalendar.deleteEvent(eventId).then(console.log);
+  }
 
   const getEvents = async () => {
     apiCalendar
       .listUpcomingEvents(50)
       .then(({ result }) => {
-        getEventsArray(result.items);
+        setEvents(getEventsArray(result.items));
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +62,7 @@ export default function TasksState(props) {
   };
 
   return (
-    <TasksContext.Provider value={{ events, setEvents, getEvents }}>
+    <TasksContext.Provider value={{ events, setEvents, getEvents, addEventToGoogleCalendar, deleteEventFromCalendar }}>
       {props.children}
     </TasksContext.Provider>
   );
