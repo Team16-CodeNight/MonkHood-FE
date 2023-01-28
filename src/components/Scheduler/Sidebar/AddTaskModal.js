@@ -1,5 +1,6 @@
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { v4 as uuidv4 } from "uuid";
 import { update } from "../../../Util/DBUtil";
 import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
 
@@ -14,8 +15,11 @@ const AddTaskModal = ({ open, setOpen }) => {
     description: "",
   });
 
+  console.log("userData", userData);
+
   const clear = () => {
     setTask({
+      id: "",
       title: "",
       duration: 0,
       category: "",
@@ -24,13 +28,14 @@ const AddTaskModal = ({ open, setOpen }) => {
   };
 
   const handleAddTask = async () => {
-    console.log("userData", userData);
+    // console.log("userData", userData);
     try {
-      console.log("task", task);
+      // console.log("task", task);
       let newTaskArray = userData?.tasks;
-      newTaskArray.push(task);
-      console.log("user id is:");
-      console.log(userData.urlName);
+      setTask({ ...task, id: uuidv4().slice(0, 8) });
+      newTaskArray.push({ ...task, id: uuidv4().slice(0, 8) });
+      // console.log("user id is:");
+      // console.log(userData.urlName);
       await update(newTaskArray, userData.urlName);
       setOpen(false);
       clear();
