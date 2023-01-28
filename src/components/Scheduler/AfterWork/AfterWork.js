@@ -3,12 +3,17 @@ import styles from "./afterWork.module.css";
 import { CheckIcon } from "@heroicons/react/solid";
 import Sentiments from "./Sentiments";
 import Categories from "./Categories";
+import Recommendations from "./Recommendations";
 
 const sampleSentiments = ["Relaxing", "Productive", "Creative", "Something Totally New"];
 
+const sampleCategories = ["Watch Movie", "Listen to Music", "Read a Book", "Play a Game", "Do Meditation", "Do Exercise", "Do Something Totally New"];
+
 const AfterWork = () => {
   const [sentiment, setSentiment] = useState("");
-  let stage = 0;
+  const [category, setCategory] = useState("");
+  const [stage, setStage] = useState(0);
+  let currStage = 0;
   const [steps, setSteps] = useState([
     { id: "01", name: "Mood Analysis", href: "#", status: "current" },
     { id: "02", name: "Category Selection", href: "#", status: "upcoming" },
@@ -16,21 +21,22 @@ const AfterWork = () => {
   ]);
 
   const handleUpdateStage = () => {
-    // setStage(stage + 1);
-    stage = stage + 1;
-    if (stage === 0) {
+    setStage(stage + 1);
+    currStage = stage + 1;
+    console.log("currStage: ", currStage);
+    if (currStage === 0) {
       setSteps([
         { id: "01", name: "Mood Analysis", href: "#", status: "current" },
         { id: "02", name: "Category Selection", href: "#", status: "upcoming" },
         { id: "03", name: "Recommendations", href: "#", status: "upcoming" },
       ]);
-    } else if (stage === 1) {
+    } else if (currStage === 1) {
       setSteps([
         { id: "01", name: "Mood Analysis", href: "#", status: "complete" },
         { id: "02", name: "Category Selection", href: "#", status: "current" },
         { id: "03", name: "Recommendations", href: "#", status: "upcoming" },
       ]);
-    } else if (stage === 2) {
+    } else if (currStage === 2) {
       setSteps([
         { id: "01", name: "Mood Analysis", href: "#", status: "complete" },
         { id: "02", name: "Category Selection", href: "#", status: "complete" },
@@ -90,7 +96,8 @@ const AfterWork = () => {
       </div>
 
       {stage === 0 && <Sentiments sampleSentiments={sampleSentiments} setSentiment={setSentiment} handleUpdateStage={handleUpdateStage} />}
-      {stage === 1 && <Categories sampleSentiments={sampleSentiments} setSentiment={setSentiment} handleUpdateStage={handleUpdateStage} />}
+      {stage === 1 && <Categories sampleCategories={sampleCategories} setCategory={setCategory} handleUpdateStage={handleUpdateStage} />}
+      {stage === 2 && <Recommendations />}
 
       {/* <div className="bg-white shadow sm:rounded-lg">
         <div className="px-4 py-5 sm:p-6">

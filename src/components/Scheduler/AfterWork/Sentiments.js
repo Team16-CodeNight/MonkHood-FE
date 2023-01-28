@@ -2,8 +2,9 @@ export default function Sentiments({ sampleSentiments, setSentiment, handleUpdat
   return (
     <>
       <h2 className="mx-10 text-3xl font-semibold">What type of feeling you are having?</h2>
-      {sampleSentiments?.map((sentiment) => (
+      {sampleSentiments?.map((sentiment, idx) => (
         <button
+          key={idx}
           className="bg-white shadow sm:rounded-lg p-2 m-10 border border-transparent text-xs font-medium rounded text-orange-700 bg-orange-100 hover:bg-orange-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
           style={{ width: "30%" }}
           onClick={() => {

@@ -17,7 +17,7 @@ const AddTaskModal = ({ open, setOpen }) => {
     description: "",
   });
 
-  console.log("userData", userData);
+  // console.log("userData", userData);
 
   const clear = () => {
     setTask({
