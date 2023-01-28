@@ -1,43 +1,43 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { AnnotationIcon, GlobeAltIcon, LightningBoltIcon, MailIcon, ScaleIcon } from "@heroicons/react/outline";
+import { ArchiveIcon,StopIcon, LightningBoltIcon, CalendarIcon,IdentificationIcon } from "@heroicons/react/outline";
 
 const transferFeatures = [
   {
     id: 1,
-    name: "Competitive exchange rates",
+    name: "Stop prioritizing",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: GlobeAltIcon,
+      "If you would like to stop prioritizing tasks, it would mean not considering the importance or urgency of tasks and completing them in any order",
+    icon: StopIcon,
   },
   {
     id: 2,
-    name: "No hidden fees",
+    name: "Increase Productivity",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: ScaleIcon,
+      "Determine which tasks are most important and should be completed first.Use tools like calendars and to-do lists to manage your time effectively.",
+    icon:IdentificationIcon,
   },
   {
     id: 3,
-    name: "Transfers are instant",
+    name: "Finish More Tasks",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
+      "Break large tasks into smaller, more manageable chunks. This will make it easier to focus on completing one part of the task at a time.",
     icon: LightningBoltIcon,
   },
 ];
 const communicationFeatures = [
   {
     id: 1,
-    name: "Mobile notifications",
+    name: "Explore different after work hours",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: AnnotationIcon,
+      "Take a class or learn a new skill. It can be something you always wanted to do but didn't have the time for.",
+    icon: ArchiveIcon,
   },
   {
     id: 2,
-    name: "Reminder emails",
+    name: "One Calender for all management",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.",
-    icon: MailIcon,
+      "Set reminders for important deadlines or meetings.Review your calendar regularly to make sure you are on track and adjust as needed.",
+    icon: CalendarIcon,
   },
 ];
 
@@ -62,18 +62,17 @@ const Features = () => {
         </svg>
 
         <div className="relative">
-          <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">A better way to send money</h2>
+          <h2 className="text-center text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">A better way to Monkhood</h2>
           <p className="mt-4 max-w-3xl mx-auto text-center text-xl text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus magnam voluptatum cupiditate veritatis in, accusamus quisquam.
+            Use a task management tool in addition to your calendar: Some calendar apps have built-in task management features, but other apps such as Trello, Asana, or Todoist, have more advanced features and can integrate with your calendar.
           </p>
         </div>
 
         <div className="relative mt-12 lg:mt-24 lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div className="relative">
-            <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Transfer funds world-wide</h3>
+            <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Features of Calendar Scheduler</h3>
             <p className="mt-3 text-lg text-gray-500">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur minima sequi recusandae, porro maiores officia assumenda aliquam
-              laborum ab aliquid veritatis impedit odit adipisci optio iste blanditiis facere. Totam, velit.
+               Ability to create, edit, and delete events, appointments, and tasks.Ability to set reminders for events, appointments, and tasks.Ability to invite others to events and appointments.
             </p>
 
             <dl className="mt-10 space-y-10">
@@ -104,9 +103,9 @@ const Features = () => {
                   <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
                 </pattern>
               </defs>
-              <rect width={784} height={404} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
+              <rect width={784} height={300} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
             </svg>
-            <img className="relative mx-auto" width={490} src="https://tailwindui.com/img/features/feature-example-1.png" alt="" />
+            <img className="relative mx-auto" width={800} src="calendar.png" alt="Image" />
           </div>
         </div>
 
@@ -129,10 +128,11 @@ const Features = () => {
         <div className="relative mt-12 sm:mt-16 lg:mt-24">
           <div className="lg:grid lg:grid-flow-row-dense lg:grid-cols-2 lg:gap-8 lg:items-center">
             <div className="lg:col-start-2">
-              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Always in the loop</h3>
+              <h3 className="text-2xl font-extrabold text-gray-900 tracking-tight sm:text-3xl">Features of Calendar Scheduler</h3>
               <p className="mt-3 text-lg text-gray-500">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit ex obcaecati natus eligendi delectus, cum deleniti sunt in labore
-                nihil quod quibusdam expedita nemo.
+                A calendar scheduler can help you manage your time by allowing you to schedule tasks and appointments, set reminders,
+                and view your schedule in a visual format.
+                It can also help you prioritize tasks and ensure that you are using your time effectively.
               </p>
 
               <dl className="mt-10 space-y-10">
@@ -166,7 +166,7 @@ const Features = () => {
                 </defs>
                 <rect width={784} height={404} fill="url(#e80155a9-dfde-425a-b5ea-1f6fadd20131)" />
               </svg>
-              <img className="relative mx-auto" width={490} src="https://tailwindui.com/img/features/feature-example-2.png" alt="" />
+              <img className="relative mx-auto" width={490} src="6-2.jpg" alt="Image" />
             </div>
           </div>
         </div>
@@ -174,5 +174,4 @@ const Features = () => {
     </div>
   );
 };
-
 export default Features;

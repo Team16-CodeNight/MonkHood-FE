@@ -6,12 +6,12 @@ import Features from "./Features";
 import { useUserAuth } from "../../contexts/UserAuthContextProvider";
 import GoogleButton from "react-google-button";
 import GoogleCalenderSignUp from "../GoogleCalenderSignUp";
+import FAQ from "./FAQ";
 
 const navigation = [
   { name: "Product", src: "#" },
   { name: "Features", src: "#" },
-  { name: "Marketplace", src: "#" },
-  { name: "Company", src: "#" },
+  { name: "FaQs", src: "#" },
 ];
 
 const HomeLayout = () => {
@@ -189,11 +189,11 @@ const HomeLayout = () => {
                 <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <Link to="#">
-                      <span className="sr-only">Workflow</span>
+                      <span className="sr-only">Monkhood</span>
                       <img
                         className="h-8 w-auto sm:h-10"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt=""
+                        src="monkhood-logo.png"
+                        alt="Icon"
                       />
                     </Link>
                     <div className="-mr-2 flex items-center md:hidden">
@@ -253,11 +253,8 @@ const HomeLayout = () => {
                 <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                   <div className="px-5 pt-4 flex items-center justify-between">
                     <div>
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
-                        alt=""
-                      />
+                      <img src="monkhood-logo.png" alt="img" />
+                      <title>MonkHood</title>
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -299,34 +296,27 @@ const HomeLayout = () => {
 
           <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24">
             <div className="text-center">
-              <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-                <span className="block xl:inline">
-                  {userData && userData.userName}Data to enrich your
-                </span>{" "}
-                <span className="block text-indigo-600 xl:inline">
-                  online business
-                </span>
-              </h1>
-              <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                fugiat aliqua.
+              <p className="text-4xl tracking-tight font-extrabold text-orangered-500 sm:text-4xl md:text-5xl">
+                <span className="block x1:outline">MonkHood</span>
+                <p>
+                  <span className="block text-black-1000 x2:inline">
+                    {" "}
+                    Your Professionl Zen Lifestyle Planner{" "}
+                  </span>
+                </p>
+              </p>
+              <p className="mt-3 max-w-md mx-auto text-base text-gray-1000 sm:text-lg md:mt-5 md:text-0xl md:max-w-2xl">
+                Clearly stating the meeting objective gives your team a heads-up
+                on what’s coming their way. At the very least, they’ll know
+                whether to bring a project report or a beer to the meeting. 😜
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
                   <Link
                     to="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 md:py-4 md:text-lg md:px-10"
+                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-orange-700 md:py-4 md:text-lg md:px-10"
                   >
                     Get started
-                  </Link>
-                </div>
-                <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                  <Link
-                    to="#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
-                  >
-                    Live demo
                   </Link>
                 </div>
               </div>
@@ -335,6 +325,16 @@ const HomeLayout = () => {
         </div>
       </div>
       <Features />
+      <FAQ />
+      <footer className="bg-gray-800" aria-labelledby="footer-heading">
+        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+          <div className="mt-8 border-t border-white-700 pt-8 md:flex md:items-center md:justify-between">
+            <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
+              &copy; 2020 MonkHood, Inc. All rights reserved.
+            </p>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };
