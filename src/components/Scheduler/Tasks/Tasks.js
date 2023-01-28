@@ -1,15 +1,13 @@
 import React from "react";
+import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
 
 import styles from "./Tasks.module.css";
 
 const Tasks = () => {
-  return <div className={styles.taskContainer}>
+  const { userData } = useUserAuth();
+  console.log(userData);
 
-
-  
-
-
-  </div>;
+  return <div className={styles.taskContainer}></div>;
 };
 
 export default Tasks;

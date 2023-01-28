@@ -3,10 +3,12 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { PlusSmIcon } from "@heroicons/react/solid";
-import { useUserAuth } from "../../contexts/UserAuthContextProvider";
+import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import styles from "./SchedulerNavbar.module.css";
+import { addTask, update } from "../../../Util/DBUtil";
+import { serverTimestamp } from "@firebase/firestore";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -21,11 +23,31 @@ const SchedulerNavbar = ({ tab }) => {
       await logOut();
       localStorage.removeItem("user");
       navigate("/");
-      //window.location.reload();
     } catch {
       navigate("/error/Something went wrong");
     }
   };
+
+  const updateTask = async () => {
+    try {
+      let newTaskArray = userData.tasks;
+      newTaskArray.push({
+        title: "do GFG",
+        duration: 4,
+        category: "usual",
+        description: "Let's do GFG",
+      });
+      console.log("user id is:");
+      console.log(userData.urlName);
+
+      await update(newTaskArray, userData.urlName);
+    } catch (error) {
+      alert(error);
+    }
+  };
+
+  console.log(userData);
+
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
@@ -102,6 +124,7 @@ const SchedulerNavbar = ({ tab }) => {
                 <div className="flex-shrink-0">
                   <button
                     type="button"
+                    onClick={updateTask}
                     className="relative inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                   >
                     <PlusSmIcon

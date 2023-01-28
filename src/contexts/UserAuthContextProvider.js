@@ -20,6 +20,7 @@ import {
   where,
 } from "firebase/firestore";
 import { createUser } from "../Util/DBUtil";
+import apiCalendar from "../GoogleCalender/google-config";
 
 const userAuthContext = createContext();
 
@@ -40,6 +41,14 @@ export function UserAuthContextProvider({ children }) {
       });
     });
   };
+
+  // const handleGoogleCalenderSignUp = (name) => {
+  //   if (name === "sign-in") {
+  //     apiCalendar.handleAuthClick();
+  //   } else if (name === "sign-out") {
+  //     apiCalendar.handleSignoutClick();
+  //   }
+  // };
 
   useEffect(() => {
     if (user !== null) {
@@ -129,6 +138,9 @@ export function UserAuthContextProvider({ children }) {
 
   function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
+    googleAuthProvider.addScope(
+      "https://www.googleapis.com/auth/calendar.readonly"
+    );
     return signInWithPopup(auth, googleAuthProvider);
   }
 
@@ -170,6 +182,7 @@ export function UserAuthContextProvider({ children }) {
         userData,
         userUniqueId,
         verifyEmail,
+        apiCalendar,
       }}
     >
       {children}

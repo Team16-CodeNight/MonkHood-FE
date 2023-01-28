@@ -6,6 +6,7 @@ import {
   where,
   setDoc,
   query,
+  updateDoc,
 } from "firebase/firestore";
 import { generateKeyWordsForUsers, getBuildCodePic } from "./Utils";
 
@@ -44,4 +45,11 @@ export const createUser = async (input) => {
   } catch (error) {
     return error;
   }
+};
+
+export const update = async (tasks, urlName) => {
+  const userTasksRef = doc(db, "users", urlName);
+  await updateDoc(userTasksRef, {
+    tasks: tasks,
+  });
 };

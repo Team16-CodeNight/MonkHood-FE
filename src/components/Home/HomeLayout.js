@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Features from "./Features";
 import { useUserAuth } from "../../contexts/UserAuthContextProvider";
 import GoogleButton from "react-google-button";
+import GoogleCalenderSignUp from "../GoogleCalenderSignUp";
 
 const navigation = [
   { name: "Product", src: "#" },
@@ -104,6 +105,8 @@ const HomeLayout = () => {
 
   return (
     <>
+      <GoogleCalenderSignUp />
+      <br />
       <div className="relative bg-gray-50 overflow-hidden">
         <div
           className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full"
@@ -337,11 +340,3 @@ const HomeLayout = () => {
 };
 
 export default HomeLayout;
-
-/*
- <GoogleButton
-  type="dark"
-  onClick={handleGoogleSignInForSignUp}
-  label="Sign up with Google"
-/>
- */
