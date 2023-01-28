@@ -14,8 +14,9 @@ function App() {
       <TasksState>
         <Router>
           <Routes>
-            <Route path="/" element={<HomeLayout />} />
+            <Route exact path="/" element={<HomeLayout />} />
             <Route
+              exact
               path="/user/:component"
               element={
                 <ProtectedRoute>

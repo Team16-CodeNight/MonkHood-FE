@@ -22,7 +22,7 @@ const SchedulerNavbar = ({ tab }) => {
       localStorage.removeItem("user");
       navigate("/");
     } catch {
-      navigate("/error/Something went wrong");
+      navigate("/error");
     }
   };
 
@@ -40,11 +40,11 @@ const SchedulerNavbar = ({ tab }) => {
                     {open ? <XIcon className="block h-6 w-6" aria-hidden="true" /> : <MenuIcon className="block h-6 w-6" aria-hidden="true" />}
                   </Disclosure.Button>
                 </div>
-                <div className="flex-shrink-0 flex items-center">
+                <Link to="/" className="flex-shrink-0 flex items-center">
                   <img className="block lg:hidden h-8 w-auto" src="/monkhood-logo.png" alt="Workflow" />
                   <img className="hidden lg:block h-8 w-auto" src="/monkhood-logo.png" alt="Workflow" />
-                  <h2 className={`${styles.logoText} items-center text-lg font-medium`}>MonkHood</h2>
-                </div>
+                  <h2 className={`items-center ml-2 text-lg font-bold`}>MonkHood</h2>
+                </Link>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
                   <Link
@@ -100,7 +100,7 @@ const SchedulerNavbar = ({ tab }) => {
                       leaveFrom="transform opacity-100 scale-100"
                       leaveTo="transform opacity-0 scale-95"
                     >
-                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-20">
                         <Menu.Item>
                           {({ active }) => (
                             <a href="#" className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}>
@@ -117,12 +117,13 @@ const SchedulerNavbar = ({ tab }) => {
                         </Menu.Item>
                         <Menu.Item>
                           {({ active }) => (
-                            <button
+                            <a
+                              href=""
                               onClick={handleLogOut}
                               className={classNames(active ? "bg-gray-100" : "", "block px-4 py-2 text-sm text-gray-700")}
                             >
                               Sign out
-                            </button>
+                            </a>
                           )}
                         </Menu.Item>
                       </Menu.Items>
