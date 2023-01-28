@@ -42,13 +42,13 @@ export function UserAuthContextProvider({ children }) {
     });
   };
 
-  // const handleGoogleCalenderSignUp = (name) => {
-  //   if (name === "sign-in") {
-  //     apiCalendar.handleAuthClick();
-  //   } else if (name === "sign-out") {
-  //     apiCalendar.handleSignoutClick();
-  //   }
-  // };
+  const handleGoogleCalenderSignUp = (name) => {
+    if (name === "sign-in") {
+      apiCalendar.handleAuthClick();
+    } else if (name === "sign-out") {
+      apiCalendar.handleSignoutClick();
+    }
+  };
 
   useEffect(() => {
     if (user !== null) {
@@ -183,6 +183,7 @@ export function UserAuthContextProvider({ children }) {
         userUniqueId,
         verifyEmail,
         apiCalendar,
+        handleGoogleCalenderSignUp,
       }}
     >
       {children}

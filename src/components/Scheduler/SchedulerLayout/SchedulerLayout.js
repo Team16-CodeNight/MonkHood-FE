@@ -8,11 +8,20 @@ import AfterWork from "../AfterWork/AfterWork";
 import TasksContext from "../../../contexts/TasksContext";
 
 import styles from "./SchedulerLayout.module.css";
+import { useUserAuth } from "../../../contexts/UserAuthContextProvider";
+import { async } from "@firebase/util";
 
 const SchedulerLayout = () => {
   // call setDummySchedules first to set dummy schedules then call getSchedules
 
-  let { getTasks, addNewTask, setDummySchedules, getSchedules, addNewSchedule } = useContext(TasksContext);
+  let {
+    getTasks,
+    addNewTask,
+    setDummySchedules,
+    getSchedules,
+    addNewSchedule,
+  } = useContext(TasksContext);
+  const { apiCalendar, handleGoogleCalenderSignUp } = useUserAuth();
   let { component } = useParams();
   const [tab, setTab] = useState(1);
   const [tasks, setTasks] = useState([]);
@@ -23,8 +32,53 @@ const SchedulerLayout = () => {
     else if (component == "after-work") setTab(3);
   }, [component]);
 
+  useEffect(() => {
+    console.log("called....");
+    handleGoogleCalenderSignUp("sign-in");
+  }, []);
+
+  const getAllEvents = async () => {
+    apiCalendar
+      .listUpcomingEvents(30)
+      .then(({ result }) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const createEventHandler = async () => {
+    let endTime = new Date();
+    endTime.setHours(endTime.getHours() + 1);
+    apiCalendar
+      .createEvent(
+        {
+          start: {
+            dateTime: new Date(),
+          },
+          end: {
+            dateTime: endTime,
+          },
+          description: "Nothing",
+          summary: "Code Night",
+        },
+        "primary"
+      )
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    console.log("called...");
+  };
+
   return (
     <>
+      <h1 onClick={getAllEvents}>Button</h1>
+      <h1 onClick={createEventHandler}>Create Event</h1>
       <SchedulerNavbar tab={tab} />
       <div className={styles.container}>
         <Sidebar height="80vh" tab={tab} setTasks={setTasks} />

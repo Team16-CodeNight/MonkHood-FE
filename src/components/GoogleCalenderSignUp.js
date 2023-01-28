@@ -1,46 +1,34 @@
-import React from "react";
-import apiCalendar from "../GoogleCalender/google-config";
+import React, { useEffect } from "react";
+import { useUserAuth } from "../contexts/UserAuthContextProvider";
 
 function GoogleCalenderSignUp() {
-  const getAllEvents = async () => {
-    apiCalendar
-      .listUpcomingEvents(10)
-      .then(({ result }) => {
-        console.log(result);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  const { apiCalendar } = useUserAuth();
 
-  const handleSignUp = (e, name) => {
-    if (name === "sign-in") {
-      apiCalendar.handleAuthClick();
+  useEffect(() => {
+    const getAllEvents = async () => {
+      apiCalendar
+        .listUpcomingEvents(10)
+        .then(({ result }) => {
+          console.log(result);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getAllEvents();
+  }, []);
 
-      getAllEvents();
-    } else if (name === "sign-out") {
-      apiCalendar.handleSignoutClick();
-    }
-  };
+  //   const handleGoogleCalenderSignUp = (e, name) => {
+  //     if (name === "sign-in") {
+  //       apiCalendar.handleAuthClick();
 
-  return (
-    <>
-      <button
-        onClick={(e) => {
-          handleSignUp(e, "sign-in");
-        }}
-      >
-        sing-in
-      </button>
-      <button
-        onClick={(e) => {
-          handleSignUp(e, "sign-out");
-        }}
-      >
-        sign-out
-      </button>
-    </>
-  );
+  //       getAllEvents();
+  //     } else if (name === "sign-out") {
+  //       apiCalendar.handleSignoutClick();
+  //     }
+  //   };
+
+  return <></>;
 }
 
 export default GoogleCalenderSignUp;
