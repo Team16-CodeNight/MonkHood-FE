@@ -3,19 +3,20 @@ import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
 import { PlusSmIcon } from "@heroicons/react/solid";
-import styles from './SchedulerNavbar.module.css';
+import { Link } from "react-router-dom";
+import styles from "./SchedulerNavbar.module.css";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const SchedulerNavbar = () => {
+const SchedulerNavbar = ({ tab }) => {
   return (
     <Disclosure as="nav" className="bg-white shadow">
       {({ open }) => (
         <>
-          <div className="px-4 sm:px-6 lg:px-8" style={{width:"100%"}}>
-            <div className="flex justify-between h-16 " style={{width:"100%"}}>
+          <div className="px-4 sm:px-6 lg:px-8" style={{ width: "100%" }}>
+            <div className="flex justify-between h-16 " style={{ width: "100%" }}>
               <div className="flex">
                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                   {/* Mobile menu button */}
@@ -26,24 +27,35 @@ const SchedulerNavbar = () => {
                 </div>
                 <div className="flex-shrink-0 flex items-center">
                   <img className="block lg:hidden h-8 w-auto" src="/monkhood-logo.png" alt="Workflow" />
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="/monkhood-logo.png"
-                    alt="Workflow"
-                  />
-                  <h2 className={`${styles.logoText} items-center text-lg font-medium` }>MonkHood</h2>
+                  <img className="hidden lg:block h-8 w-auto" src="/monkhood-logo.png" alt="Workflow" />
+                  <h2 className={`${styles.logoText} items-center text-lg font-medium`}>MonkHood</h2>
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-                  <a href="#" className="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
-                    Schedule
-                  </a>
-                  <a
-                    href="#"
-                    className="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                  <Link
+                    to="/user/tasks"
+                    className={`${
+                      tab == 1 ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300"
+                    }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                  >
+                    To Do Tasks
+                  </Link>
+                  <Link
+                    to="/user/calender"
+                    className={`${
+                      tab == 2 ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300"
+                    }  inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                  >
+                    Calender View
+                  </Link>
+                  <Link
+                    to="/user/after-work"
+                    className={`${
+                      tab == 3 ? "border-indigo-500 text-gray-900" : "border-transparent text-gray-500 hover:border-gray-300"
+                    }    inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
                   >
                     After Work Hours
-                  </a>
+                  </Link>
                 </div>
               </div>
               <div className="flex items-center">
@@ -114,7 +126,7 @@ const SchedulerNavbar = () => {
                 </div>
               </div>
             </div>
-          </div> 
+          </div>
 
           <Disclosure.Panel className="md:hidden">
             <div className="pt-2 pb-3 space-y-1">
