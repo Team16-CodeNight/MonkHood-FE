@@ -40,8 +40,8 @@ function SignUpModal({
       // navigate to home page
       setTimeout(() => {
         setLoadingForSignUp(false);
-        console.log("user is:");
-        console.log(user);
+        // console.log("user is:");
+        // console.log(user);
         //window.location.reload();
         navigate("/");
         closeDialog();

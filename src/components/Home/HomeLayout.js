@@ -46,8 +46,8 @@ const HomeLayout = () => {
       // navigate to home page
       setTimeout(() => {
         setLoadingForSignUp(false);
-        console.log("user is:");
-        console.log(user);
+        // console.log("user is:");
+        // console.log(user);
         //window.location.reload();
         navigate("/user/scheduler");
         closeDialog();
@@ -59,10 +59,8 @@ const HomeLayout = () => {
        * errorForSignUp page
        */
       if (
-        errorForSignUp.message ===
-          "Firebase: Error (auth/popup-closed-by-user)." ||
-        errorForSignUp.message ===
-          "Firebase: Error (auth/cancelled-popup-request)."
+        errorForSignUp.message === "Firebase: Error (auth/popup-closed-by-user)." ||
+        errorForSignUp.message === "Firebase: Error (auth/cancelled-popup-request)."
       ) {
       } else {
         if (errorForSignUp !== null) alert(errorForSignUp.message);
@@ -108,10 +106,7 @@ const HomeLayout = () => {
       <GoogleCalenderSignUp />
       <br />
       <div className="relative bg-gray-50 overflow-hidden">
-        <div
-          className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full"
-          aria-hidden="true"
-        >
+        <div className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full" aria-hidden="true">
           <div className="relative h-full max-w-7xl mx-auto">
             <svg
               className="absolute right-full transform translate-y-1/4 translate-x-1/4 lg:translate-x-1/2"
@@ -121,29 +116,11 @@ const HomeLayout = () => {
               viewBox="0 0 404 784"
             >
               <defs>
-                <pattern
-                  id="f210dbf6-a58d-4871-961e-36d5016a0f49"
-                  x={0}
-                  y={0}
-                  width={20}
-                  height={20}
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x={0}
-                    y={0}
-                    width={4}
-                    height={4}
-                    className="text-gray-200"
-                    fill="currentColor"
-                  />
+                <pattern id="f210dbf6-a58d-4871-961e-36d5016a0f49" x={0} y={0} width={20} height={20} patternUnits="userSpaceOnUse">
+                  <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
                 </pattern>
               </defs>
-              <rect
-                width={404}
-                height={784}
-                fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)"
-              />
+              <rect width={404} height={784} fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
             </svg>
             <svg
               className="absolute left-full transform -translate-y-3/4 -translate-x-1/4 md:-translate-y-1/2 lg:-translate-x-1/2"
@@ -153,48 +130,23 @@ const HomeLayout = () => {
               viewBox="0 0 404 784"
             >
               <defs>
-                <pattern
-                  id="5d0dd344-b041-4d26-bec4-8d33ea57ec9b"
-                  x={0}
-                  y={0}
-                  width={20}
-                  height={20}
-                  patternUnits="userSpaceOnUse"
-                >
-                  <rect
-                    x={0}
-                    y={0}
-                    width={4}
-                    height={4}
-                    className="text-gray-200"
-                    fill="currentColor"
-                  />
+                <pattern id="5d0dd344-b041-4d26-bec4-8d33ea57ec9b" x={0} y={0} width={20} height={20} patternUnits="userSpaceOnUse">
+                  <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
                 </pattern>
               </defs>
-              <rect
-                width={404}
-                height={784}
-                fill="url(#5d0dd344-b041-4d26-bec4-8d33ea57ec9b)"
-              />
+              <rect width={404} height={784} fill="url(#5d0dd344-b041-4d26-bec4-8d33ea57ec9b)" />
             </svg>
           </div>
         </div>
         <div className="relative pt-6 pb-16 sm:pb-24">
           <Popover>
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
-              <nav
-                className="relative flex items-center justify-between sm:h-10 md:justify-center"
-                aria-label="Global"
-              >
+              <nav className="relative flex items-center justify-between sm:h-10 md:justify-center" aria-label="Global">
                 <div className="flex items-center flex-1 md:absolute md:inset-y-0 md:left-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <Link to="#">
                       <span className="sr-only">Monkhood</span>
-                      <img
-                        className="h-8 w-auto sm:h-10"
-                        src="monkhood-logo.png"
-                        alt="Icon"
-                      />
+                      <img className="h-8 w-auto sm:h-10" src="monkhood-logo.png" alt="Icon" />
                     </Link>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="bg-gray-50 rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
@@ -206,11 +158,7 @@ const HomeLayout = () => {
                 </div>
                 <div className="hidden md:flex md:space-x-10">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      to={item.src}
-                      className="font-medium text-gray-500 hover:text-gray-900"
-                    >
+                    <Link key={item.name} to={item.src} className="font-medium text-gray-500 hover:text-gray-900">
                       {item.name}
                     </Link>
                   ))}
@@ -246,10 +194,7 @@ const HomeLayout = () => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Popover.Panel
-                focus
-                className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
-              >
+              <Popover.Panel focus className="absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden">
                 <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
                   <div className="px-5 pt-4 flex items-center justify-between">
                     <div>
@@ -299,16 +244,12 @@ const HomeLayout = () => {
               <p className="text-4xl tracking-tight font-extrabold text-orangered-500 sm:text-4xl md:text-5xl">
                 <span className="block x1:outline">MonkHood</span>
                 <p>
-                  <span className="block text-black-1000 x2:inline">
-                    {" "}
-                    Your Professionl Zen Lifestyle Planner{" "}
-                  </span>
+                  <span className="block text-black-1000 x2:inline"> Your Professionl Zen Lifestyle Planner </span>
                 </p>
               </p>
               <p className="mt-3 max-w-md mx-auto text-base text-gray-1000 sm:text-lg md:mt-5 md:text-0xl md:max-w-2xl">
-                Clearly stating the meeting objective gives your team a heads-up
-                on what’s coming their way. At the very least, they’ll know
-                whether to bring a project report or a beer to the meeting. 😜
+                Clearly stating the meeting objective gives your team a heads-up on what’s coming their way. At the very least, they’ll know whether
+                to bring a project report or a beer to the meeting. 😜
               </p>
               <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
                 <div className="rounded-md shadow">
@@ -329,9 +270,7 @@ const HomeLayout = () => {
       <footer className="bg-gray-800" aria-labelledby="footer-heading">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <div className="mt-8 border-t border-white-700 pt-8 md:flex md:items-center md:justify-between">
-            <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">
-              &copy; 2020 MonkHood, Inc. All rights reserved.
-            </p>
+            <p className="mt-8 text-base text-gray-400 md:mt-0 md:order-1">&copy; 2020 MonkHood, Inc. All rights reserved.</p>
           </div>
         </div>
       </footer>

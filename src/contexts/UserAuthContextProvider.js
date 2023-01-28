@@ -52,8 +52,8 @@ export function UserAuthContextProvider({ children }) {
 
   useEffect(() => {
     if (user !== null) {
-      console.log("user data:");
-      console.log(user);
+      // console.log("user data:");
+      // console.log(user);
       user.providerData.forEach((profile) => {
         localStorage.setItem("user", JSON.stringify(user));
         const checkUserPresentInDB = async () => {
