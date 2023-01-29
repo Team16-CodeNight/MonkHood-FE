@@ -115,7 +115,7 @@ const Features = () => {
               </defs>
               <rect width={784} height={300} fill="url(#ca9667ae-9f92-4be7-abcb-9e3d727f2941)" />
             </svg>
-            <img className="relative ml-8" width={800} src="scheduler.jpg" alt="Image" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;" }} />
+            <img className="relative ml-8" width={800} src="scheduler.jpg" alt="Image" style={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px" }} />
           </div>
         </div>
 

@@ -28,8 +28,9 @@ const HomeLayout = () => {
       localStorage.removeItem("user-token");
       navigate("/");
       //window.location.reload();
-    } catch {
-      navigate("/error");
+    } catch (error){
+      console.log('error', error)
+      // navigate("/error");
     }
   };
 
@@ -62,9 +63,10 @@ const HomeLayout = () => {
       ) {
       } else {
         if (errorForSignUp !== null) alert(errorForSignUp.message);
-        else {
-          navigate("/error/Something Went Wrong ⚠️");
-        }
+        // else {
+          // console.log("error", error);
+          // navigate("/error/Something Went Wrong ⚠️");
+        // }
       }
     }
   };
@@ -249,12 +251,10 @@ const HomeLayout = () => {
             <div className="text-center">
               <p className="text-4xl tracking-tight font-bold sm:text-4xl md:text-5xl">
                 <span className="block x1:outline text-red-800 mb-5">MonkHood</span>
-                <p>
                   <span className="block text-black-1000 x2:inline">
                     {" "}
                     Your Professional <span className="text-yellow-600">Zen</span> Lifestyle Planner{" "}
                   </span>
-                </p>
               </p>
               <p className="mt-3 max-w-md mx-auto text-base text-gray-1000 sm:text-lg md:mt-5 md:text-0xl md:max-w-2xl text-gray-400">
                 Efficiently balance your work and personal life by helping you complete your tasks on time, even with a busy schedule.

@@ -61,7 +61,8 @@ function SignUpModal({
       } else {
         if (errorForSignUp !== null) alert(errorForSignUp.message);
         else {
-          navigate("/error/Something Went Wrong ⚠️");
+          console.log("error", error);
+          // navigate("/error/Something Went Wrong ⚠️");
         }
       }
     }
@@ -92,7 +93,7 @@ function SignUpModal({
       ) {
       } else {
         if (errorForSignIn !== null) alert(errorForSignIn.message);
-        else navigate("/errorForSignIn");
+        // else navigate("/errorForSignIn");
       }
     }
   };

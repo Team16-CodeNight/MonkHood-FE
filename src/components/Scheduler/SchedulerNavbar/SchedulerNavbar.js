@@ -21,8 +21,8 @@ const SchedulerNavbar = ({ tab }) => {
       await logOut();
       localStorage.removeItem("user");
       navigate("/");
-    } catch {
-      navigate("/error");
+    } catch(error) {
+      console.log("error", error);
     }
   };
 

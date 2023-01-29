@@ -2,10 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { HomeLayout, SchedulerLayout } from "./components";
 import TasksState from "./contexts/TasksState";
 import ProtectedRoute from "./ProtectedRoute";
-
-const page404 = () => {
-  return <>Page Not Found!</>;
-};
+import Page404 from "./components/Page404";
 
 function App() {
   return (
@@ -24,7 +21,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={page404} />
+            <Route path="*" element={<Page404/>} />
           </Routes>
         </Router>
       </TasksState>
