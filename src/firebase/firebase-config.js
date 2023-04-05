@@ -4,12 +4,13 @@ import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDU-OzN51rCxxYN9XqqZh5OVoyoLwVkSZc",
-  authDomain: "monkhood-be.firebaseapp.com",
-  projectId: "monkhood-be",
-  storageBucket: "monkhood-be.appspot.com",
-  messagingSenderId: "847243250624",
-  appId: "1:847243250624:web:b9dc583616dc7e13e4d625",
+  apiKey: "AIzaSyA9p9uQxtZaI14DSm4647OI_m0hkTKCBjM",
+  authDomain: "monkhood-be-a8fdf.firebaseapp.com",
+  projectId: "monkhood-be-a8fdf",
+  storageBucket: "monkhood-be-a8fdf.appspot.com",
+  messagingSenderId: "562643999779",
+  appId: "1:562643999779:web:6e175bc578c8b60cdb2596",
+  measurementId: "G-Y7H5QQ84VL"
 };
 
 const app = initializeApp(firebaseConfig);
